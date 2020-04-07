@@ -1,28 +1,29 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_google_places/flutter_google_places.dart';
-import 'package:miniproject/map_screen/map_request.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
 
-class GetMap_traveller extends StatefulWidget {
+import '../map_request.dart';
+
+class GetMap extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    
-    return GetMap_travellerState();
+    // TODO: implement createState
+    return GetMapState();
   }
 }
 
 GoogleMapsPlaces _places =
     new GoogleMapsPlaces(apiKey: "AIzaSyAF0n_CYFQ7IutamYthHQdrQGoUtEh6PI0");
 
-class GetMap_travellerState extends State<GetMap_traveller> {
+class GetMapState extends State<GetMap> {
   // static const _initialPosition = LatLng(6.7185992, 80.7879343);
   GoogleMapController mapController;
   GoogleMapsServices _googleMapsServices = GoogleMapsServices();
   static LatLng _initialPosition;
-  static String guideId;
+  static String dirverId;
 
   LatLng _lastPosition = _initialPosition;
   //markers
@@ -35,16 +36,16 @@ class GetMap_travellerState extends State<GetMap_traveller> {
   TextEditingController driverController = TextEditingController();
   final homeScaffoldKey = new GlobalKey<ScaffoldState>();
 
-  final DatabaseReference database = FirebaseDatabase.instance
-      .reference()
-      .child('Tour_Guide')
-      .child('guide_geoPoint');
-      
-
   final DatabaseReference database1 = FirebaseDatabase.instance
       .reference()
-      .child('Tour_Guide')
-      .child('traveller_geoPoint');
+      .child('Uber')
+      .child('drivers_geoPoint');
+      
+
+  final DatabaseReference database = FirebaseDatabase.instance
+      .reference()
+      .child('Uber')
+      .child('customers_geoPoint');
 
   Future<Null> displayPrediction(Prediction p, ScaffoldState scaffold) async {
     if (p != null) {
@@ -75,8 +76,7 @@ class GetMap_travellerState extends State<GetMap_traveller> {
     return Scaffold(
       key: homeScaffoldKey,
       appBar: AppBar(
-        backgroundColor: Color(0xffBA680B),
-        title: Text('Guide Map'),
+        title: Text('Drivers Map'),
       ),
       body: _initialPosition == null
           ? Container(
@@ -135,7 +135,7 @@ class GetMap_travellerState extends State<GetMap_traveller> {
                             color: Colors.black,
                           ),
                         ),
-                        hintText: "Start",
+                        hintText: "pick up",
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.only(left: 15.0, top: 16.0),
                       ),
@@ -209,10 +209,10 @@ class GetMap_travellerState extends State<GetMap_traveller> {
                     },
                     tooltip: "Available Guides",
                     child: Icon(
-                      Icons.person,
+                      Icons.directions_car,
                       color: Colors.white,
                     ),
-                    backgroundColor: Color(0xffBA680B),
+                    backgroundColor: Colors.green,
                   ),
                 ),
                 Positioned(
@@ -227,12 +227,12 @@ class GetMap_travellerState extends State<GetMap_traveller> {
                       // createdriverposition();
                       callTodriverposition();
                     },
-                    tooltip: "call to Traveller",
+                    tooltip: "call to Guides",
                     child: Icon(
                       Icons.call,
                       color: Colors.white,
                     ),
-                    backgroundColor: Color(0xffBA680B),
+                    backgroundColor: Colors.green,
                   ),
                 ),
                 Positioned(
@@ -261,7 +261,7 @@ class GetMap_travellerState extends State<GetMap_traveller> {
                         senRequest(value);
                       },
                       decoration: InputDecoration(
-                        hintText: "Tap the guide marker",
+                        hintText: "Tap the Guide marker",
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.only(left: 15.0, top: 16.0),
                       ),
@@ -298,12 +298,12 @@ class GetMap_travellerState extends State<GetMap_traveller> {
             markerId: MarkerId('${values["latitude"]} ${values["longitude"]}'),
             position: LatLng(values["latitude"], values["longitude"]),
             icon: BitmapDescriptor.defaultMarker,
-            infoWindow: InfoWindow(title: 'Sunil Shantha', snippet: 'buhaha'),
+            infoWindow: InfoWindow(title: 'Guide', snippet: 'Place Details'),
             onTap: () {
               driverController.text =
                   '${values["latitude"]} /${values["longitude"]}';
                   _initialPosition = LatLng(values["latitude"], values["longitude"]);
-                  guideId = values['uid'];
+                  dirverId = values['uid'];
             });
         _markers.add(markers);
       });
@@ -390,17 +390,18 @@ class GetMap_travellerState extends State<GetMap_traveller> {
     double longitude = placemark[0].position.longitude;
     LatLng destination = LatLng(latitude, longitude);
     // _onAddMarkerPressed(destination, intendeedLocation);
+    //_addMarker(destination,intendeedLocation);
     String route = await _googleMapsServices.getRouteCoordinates(
         _initialPosition, destination);
     createRoute(route);
   }
 
- //call guide - sent traveller data into guide
+ //call driver - sent customer data into driver
   Future<void> callTodriverposition() async{
     var positions = <String,dynamic>{
       'latitude': _initialPosition.latitude,
       'longitude': _initialPosition.longitude,
-      'uid': guideId
+      'uid': dirverId
     };
    // _animateToUser();
     return database1.push().set(positions);

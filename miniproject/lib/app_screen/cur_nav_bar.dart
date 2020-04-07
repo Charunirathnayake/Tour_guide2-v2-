@@ -6,8 +6,10 @@ import 'package:miniproject/app_screen/guideprofile.dart';
 import 'package:miniproject/app_screen/messages.dart';
 import 'package:miniproject/app_screen/search.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:miniproject/map_screen/Guide/getmap_guide.dart';
 import 'Posts.dart';
+
+
 
 
 class BottomNavBar extends StatefulWidget {
@@ -23,7 +25,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   final Searchbox _searchbox= Searchbox();
   final Messages _messages=Messages();
-  final FilterList _filterList=FilterList();
+  final GetMap_Guide _filterList=GetMap_Guide();
   final Profile _profile=Profile();
 
   Widget _showpage=Searchbox();
@@ -72,7 +74,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           items: <Widget>[
             Icon(FontAwesomeIcons.bookOpen, size: 30),
             Icon(Icons.email, size: 30),
-            Icon(Icons.filter_list, size: 30),
+            Icon(Icons.location_on, size: 30),
             Icon(Icons.person, size: 30),
            // Icon(Icons.perm_identity, size: 30),
           ],

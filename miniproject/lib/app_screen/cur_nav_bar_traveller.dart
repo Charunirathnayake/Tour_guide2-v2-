@@ -4,6 +4,7 @@ import 'package:miniproject/app_screen/filters.dart';
 import 'package:miniproject/app_screen/messages.dart';
 import 'package:miniproject/app_screen/search.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:miniproject/map_screen/Traveller/getmap.dart';
 import 'package:miniproject/map_screen/map_traveller.dart';
 
 
@@ -21,7 +22,7 @@ class _BottomNavBarState_traveller extends State<BottomNavBar_traveller> {
   final Searchbox _searchbox= Searchbox();
   final Messages _messages=Messages();
   final FilterList _filterList=FilterList();
-  final GetMap_traveller _map= GetMap_traveller();
+  final GetMap _map= GetMap();
 
   Widget _showpage=Searchbox();
   Widget _pagechooser(int page){

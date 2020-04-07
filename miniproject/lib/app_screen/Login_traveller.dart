@@ -207,6 +207,7 @@ return authresult.user;
                       
                 ),
                 onTap: () {
+                  Navigator.pop(context);
                   Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) =>(Signup_traveller()),

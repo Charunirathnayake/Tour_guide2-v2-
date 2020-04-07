@@ -1,73 +1,3 @@
-/*import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-
-class First extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return First_State();
-  }
-}
-
-class First_State extends State<First> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(body: Map());
-  }
-}
-
-class Map extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return Map_state();
-  }
-}
-
-class Map_state extends State<Map> {
-  GoogleMapController mapController;
-  static const _initialPosition = LatLng(6.7184, 80.7741);
-  LatLng _lastPosition = _initialPosition;
-  final Set<Marker> _makers = {};
-  
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(children: <Widget>[
-      GoogleMap(
-        initialCameraPosition:
-            CameraPosition(target: _initialPosition, zoom: 10),
-        onMapCreated: onCreated,
-        myLocationButtonEnabled: true,
-        mapType: MapType.normal,
-        compassEnabled: true,
-        markers: _makers,
-        onCameraMove: _onCameraMove,
-              ),
-              Positioned(child: FloatingActionButton(onPressed: _onAddMarkerPressed,tooltip: "Add Maker",backgroundColor: Color(0xffBA680B),),
-                            top: 40,
-                            right: 10,
-    
-                            ),
-                            Icon(Icons.add_location,color:Colors.white),
-                  
-                          ]);
-                        }
-                      
-                        void onCreated(GoogleMapController controller) {
-                        setState((){
-                          mapController=controller;
-                        });
-                      }
-                      
-                      
-                        void _onCameraMove(CameraPosition position) {
-                          setState(() {
-                            _lastPosition=position.target;
-                          });
-                }
-              
-                void _onAddMarkerPressed() {
-  }
-}*/
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -76,15 +6,15 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:miniproject/app_screen/Login.dart';
 
-
-class GetMap1 extends StatefulWidget {
+class GetMap_Guide extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
+    // TODO: implement createState
     return GetMapState();
   }
 }
 
-class GetMapState extends State<GetMap1> {
+class GetMapState extends State<GetMap_Guide> {
   static const _initialPosition = LatLng(6.7185992, 80.7879343);
   GoogleMapController mapController;
 
@@ -99,14 +29,14 @@ class GetMapState extends State<GetMap1> {
 
   final DatabaseReference database = FirebaseDatabase.instance
       .reference()
-      .child('Tour_Guide')
-      .child('traveller_geoPoint');
+      .child('Uber')
+      .child('customers_geoPoint');
 
-  @override
+ @override
   void initState() {
+    // TODO: implement initState
     super.initState();
-    getDriversMarkers();
-    /*FirebaseAuth.instance.currentUser().then((currentUser) => {
+    FirebaseAuth.instance.currentUser().then((currentUser) => {
           if (currentUser == null)
             {
               Navigator.push(context,
@@ -114,16 +44,16 @@ class GetMapState extends State<GetMap1> {
             }
           else
             {getDriversMarkers(), userId = currentUser.uid}
-        });*/
+        });
   }
 
   @override
   Widget build(BuildContext context) {
-    
+    // TODO: implement build
     return Scaffold(
-      /*appBar: AppBar(
+      appBar: AppBar(
         title: Text('Get Map'),
-      ),*/
+      ),
       body: Stack(
         children: <Widget>[
           GoogleMap(
@@ -177,4 +107,3 @@ class GetMapState extends State<GetMap1> {
     });
   }
 }
-

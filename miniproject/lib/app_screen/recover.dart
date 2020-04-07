@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:miniproject/app_screen/googlesignin_guide.dart';
 
 //create appbar
 class Recover extends StatelessWidget{
@@ -41,6 +43,7 @@ class New_password extends StatefulWidget{
 }
 
 class New_password_State extends State<New_password>{
+
   @override
   Widget build(BuildContext context) {
   

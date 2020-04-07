@@ -236,6 +236,7 @@ class Loginpage_state extends State<Loginpage> {
                     bool res = await Auth().signInWithEmail(
                         emailcontroler.text, passcontroller.text);
                     if (res == true) {
+                      Navigator.pop(context);
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -246,6 +247,7 @@ class Loginpage_state extends State<Loginpage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => LoginInterface(),
+
                           ));
                     }
                   }

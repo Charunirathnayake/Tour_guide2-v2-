@@ -155,21 +155,6 @@ class CustomListTile2 extends StatelessWidget {
 
 //drawer signout
 class CustomListTile3 extends StatelessWidget {
- /*CustomListTile3({@required this.onSignout});
-  final VoidCallback onSignout;
-  
-Future<void> logout() async {
-    
-    try {
-      await FirebaseAuth.instance.signOut();
-      return CustomListTile3(onSignout:()=> Searchbox);
-    } catch (e) {
-      print("Error signout");
-    }
-  }*/
- 
-  
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -179,7 +164,7 @@ Future<void> logout() async {
         padding: const EdgeInsets.only(right: 8.0, left: 8.0),
         child: InkWell(
           splashColor: Color(0xffBA680B),
-          onTap:(){
+          onTap: () {
             Auth().logout();
           },
           child: Container(
@@ -221,8 +206,8 @@ class Myprofile extends StatefulWidget {
 class Myprofile_State extends State<Myprofile> {
   //img pass to the firestorage
   File _image;
-String url;
-  String name, address, city, passion,email;
+  String url;
+  String name, address, city, passion, email;
   String phonenumber;
 
   getName(name) {
@@ -249,7 +234,7 @@ String url;
     this.email = email;
   }
 
- int mygendertype;
+  int mygendertype;
   String gendervalue;
   void _handlegendertype(int value) {
     setState(() {
@@ -264,81 +249,72 @@ String url;
     });
   }
 
-  createData(){
-DocumentReference ds=Firestore.instance.collection('profiledata').document(email);
-Map<String,dynamic> tasks={
-  "name":name,
-  "address":address,
-  "city":city,
-  "passion":passion,
-  "phonenumber":phonenumber,
-  "email":email,
- "gendervalue":gendervalue,
-
-};
-ds.setData(tasks).whenComplete((){
-print('New data added.');
-});
-
-
+  createData() {
+    DocumentReference ds =
+        Firestore.instance.collection('profiledata').document(email);
+    Map<String, dynamic> tasks = {
+      "name": name,
+      "address": address,
+      "city": city,
+      "passion": passion,
+      "phonenumber": phonenumber,
+      "email": email,
+      "gendervalue": gendervalue,
+    };
+    ds.setData(tasks).whenComplete(() {
+      print('New data added.');
+    });
   }
 
   Future getImage() async {
-      var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-      setState(() {
-        _image = image;
-        print('Image path $_image');
-      });
-    }
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _image = image;
+      print('Image path $_image');
+    });
+  }
 
-    Future uploadpic(BuildContext context) async {
-     /* String fileName = basename(_image.path);*/
-      StorageReference firebaseStorageRef =
-          FirebaseStorage.instance.ref().child("fileName");
-          var timeKey=DateTime.now();
+  Future uploadpic(BuildContext context) async {
+    StorageReference firebaseStorageRef =
+        FirebaseStorage.instance.ref().child("fileName");
+    var timeKey = DateTime.now();
 
-     final StorageUploadTask uploadTask = firebaseStorageRef.child(timeKey.toString()+".jpg").putFile(_image);
-      
+    final StorageUploadTask uploadTask =
+        firebaseStorageRef.child(timeKey.toString() + ".jpg").putFile(_image);
 
-      var imageUrl = await (await uploadTask.onComplete).ref.getDownloadURL();
-      url = imageUrl.toString();
-      print("Image Url=" + url);
-      saveToDatabase(url);
-      
+    var imageUrl = await (await uploadTask.onComplete).ref.getDownloadURL();
+    url = imageUrl.toString();
+    print("Image Url=" + url);
+    saveToDatabase(url);
 
-      
-      /*StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;*/
-      setState(() {
-        print('Profile picture is uploaded.');
-        Scaffold.of(context).showSnackBar(SnackBar(
-          content: Text('Profile picture is uploaded.'),
-        ));
-      });
-    }
-     void saveToDatabase(url){
-       DocumentReference ds=Firestore.instance.collection('profiledata').document(email);
-Map<String,dynamic> tasks={
-  "name":name,
-  "address":address,
-  "city":city,
-  "passion":passion,
-  "phonenumber":phonenumber,
-  "email":email,
- "gendervalue":gendervalue,
- "Image":url,
+    setState(() {
+      print('Profile picture is uploaded.');
+      Scaffold.of(context).showSnackBar(SnackBar(
+        content: Text('Profile picture is uploaded.'),
+      ));
+    });
+  }
 
-};
-ds.setData(tasks).whenComplete((){
-print('New data added.');
-});
-
-
-     }
-
+  void saveToDatabase(url) {
+    DocumentReference ds =
+        Firestore.instance.collection('profiledata').document(email);
+    Map<String, dynamic> tasks = {
+      "name": name,
+      "address": address,
+      "city": city,
+      "passion": passion,
+      "phonenumber": phonenumber,
+      "email": email,
+      "gendervalue": gendervalue,
+      "Image": url,
+    };
+    ds.setData(tasks).whenComplete(() {
+      print('New data added.');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    
     return ListView(
       children: <Widget>[
         Column(children: <Widget>[
@@ -367,7 +343,7 @@ print('New data added.');
           ),
 
           //profile pic
-          Row(
+         Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Align(
@@ -499,43 +475,41 @@ print('New data added.');
               height: 10.0,
             ),
             Padding(
-              padding: EdgeInsets.only(right: 25.0,left: 25.0),
-              child: Row(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        'Male',
-                        style: TextStyle(
-                            //fontWeight: FontWeight.bold,
-                            fontSize: 15.0),
-                      ),
-                      Radio(
-                          value: 1,
-                          groupValue: mygendertype,
-                          onChanged: _handlegendertype),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        'Female',
-                        style: TextStyle(
-                          fontSize: 15.0,
-                          // fontWeight: FontWeight.bold
+                padding: EdgeInsets.only(right: 25.0, left: 25.0),
+                child: Row(
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          'Male',
+                          style: TextStyle(
+                              //fontWeight: FontWeight.bold,
+                              fontSize: 15.0),
                         ),
-                      ),
-                      Radio(
-                        value: 2,
-                        groupValue: mygendertype,
-                        onChanged: _handlegendertype,
-                      )
-                    ],
-                  )
-                ],
-              )
-            )
-
+                        Radio(
+                            value: 1,
+                            groupValue: mygendertype,
+                            onChanged: _handlegendertype),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          'Female',
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            // fontWeight: FontWeight.bold
+                          ),
+                        ),
+                        Radio(
+                          value: 2,
+                          groupValue: mygendertype,
+                          onChanged: _handlegendertype,
+                        )
+                      ],
+                    )
+                  ],
+                ))
           ],
         ),
         SizedBox(
@@ -573,9 +547,9 @@ print('New data added.');
                   const EdgeInsets.only(left: 10.0, right: 10.0, top: 11.0),
               child: Container(
                 height: 40.0,
-                child: TextFormField(
-                  onChanged: (String passion){getPassion(passion);}
-                ),
+                child: TextFormField(onChanged: (String passion) {
+                  getPassion(passion);
+                }),
               ),
             )
           ],
@@ -594,9 +568,9 @@ print('New data added.');
               padding: const EdgeInsets.only(left: 10.0, right: 10.0),
               child: Container(
                 height: 50.0,
-                child: TextFormField(
-                  onChanged: (String phonenumber){getPhonenumber(phonenumber);}
-                ),
+                child: TextFormField(onChanged: (String phonenumber) {
+                  getPhonenumber(phonenumber);
+                }),
               ),
             )
           ],
@@ -618,9 +592,9 @@ print('New data added.');
               padding: const EdgeInsets.only(left: 10.0, right: 10.0),
               child: Container(
                 height: 50.0,
-                child: TextFormField(
-                  onChanged: (String email){getEmail(email);}
-                ),
+                child: TextFormField(onChanged: (String email) {
+                  getEmail(email);
+                }),
               ),
             )
           ],
@@ -640,8 +614,8 @@ print('New data added.');
                 uploadpic(context);
                 createData();
                 Navigator.pop(context);
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Profile()));
-
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Profile()));
               },
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(40.0),
@@ -670,25 +644,10 @@ print('New data added.');
         Text(
             'Your public profile page is the way for other guides and trvavellers to get to know you.'),
 
-        /*ButtonTheme(
-          height: 30.0,
-          child: RaisedButton(
-            color: Color(0xffBA680B),
-            hoverColor: Color(0xffF5CA99),
-            onPressed: () {},
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(40.0),
-              side: BorderSide(color: Color(0xffBA680B)),
-            ),
-            child: Text('Back',style:TextStyle(color: Colors.white,fontSize: 15.0),)
-          ),
-        ),*/
-
         SizedBox(
           height: 20.0,
         ),
       ],
     );
   }
-  
 }

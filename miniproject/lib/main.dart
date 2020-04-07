@@ -19,11 +19,15 @@ import 'package:miniproject/app_screen/filters.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:miniproject/app_screen/birthday.dart';
 import 'package:miniproject/app_screen/passion.dart';
+import 'package:miniproject/map_screen/Guide/getmap_guide.dart';
 import 'package:miniproject/map_screen/first_screen.dart';
 import 'package:miniproject/map_screen/map_traveller.dart';
+import 'package:miniproject/messages/message.dart';
 import 'package:miniproject/post_upload/img_upload.dart';
 import 'package:miniproject/post_upload/post_home.dart';
 import 'package:miniproject/app_screen/spalshpage.dart';
+
+import 'map_screen/Traveller/getmap.dart';
 
 
 
@@ -33,7 +37,7 @@ void main(){
       theme: ThemeData(
         primarySwatch: Colors.brown
       ),
-      home:Searchbox(),
+      home:Messanging(),
       debugShowCheckedModeBanner: false,
     )
   );

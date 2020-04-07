@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:loader_search_bar/loader_search_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+
 class FilterList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -121,7 +122,13 @@ class FilterView_State extends State<FilterView> {
               child: RaisedButton(
                   color: Color(0xffBA680B),
                   hoverColor: Color(0xffF5CA99),
-                  onPressed: () {},
+                  onPressed:() {
+                 /* Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => (Heritage()),
+                      ));*/
+                },
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40.0),
                     side: BorderSide(color: Color(0xffBA680B)),

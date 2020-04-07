@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:miniproject/app_screen/Login.dart';
 import 'package:miniproject/app_screen/Login_traveller.dart';
 import 'package:miniproject/app_screen/MainScreen_guide.dart';
+import 'package:miniproject/app_screen/MainScreen_traveller.dart';
 import 'package:miniproject/app_screen/guideprofile.dart';
 import 'package:miniproject/app_screen/messages.dart';
 import 'package:miniproject/app_screen/messages.dart' as prefix0;
@@ -62,7 +63,7 @@ class Choosepage_state extends State<Choosepage> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => (LoginInterface_traveller()),
+                builder: (context) => (MainScreen_traveller()),
               ));
       }
     });
