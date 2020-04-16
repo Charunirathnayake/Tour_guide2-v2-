@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:loader_search_bar/loader_search_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:miniproject/app_screen/Filters/Adventure.dart';
+import 'package:miniproject/app_screen/Filters/Business.dart';
+import 'package:miniproject/app_screen/Filters/Cultural.dart';
+import 'package:miniproject/app_screen/Filters/Forest.dart';
+import 'package:miniproject/app_screen/Filters/Heritage.dart';
+import 'package:miniproject/app_screen/Filters/Nature.dart';
+
 
 
 class FilterList extends StatelessWidget {
@@ -58,13 +65,13 @@ class Datasearchbox extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
+    
     return null;
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    //TODO:REMOVE UNNESSARY CODES
+    
     final suggesionsList = query.isEmpty ? recent : distric;
     return ListView.builder(
       itemBuilder: (context, index) {
@@ -123,11 +130,11 @@ class FilterView_State extends State<FilterView> {
                   color: Color(0xffBA680B),
                   hoverColor: Color(0xffF5CA99),
                   onPressed:() {
-                 /* Navigator.push(
+                  Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => (Heritage()),
-                      ));*/
+                        builder: (context) => (SearchboxHeritage()),
+                      ));
                 },
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40.0),
@@ -157,7 +164,14 @@ class FilterView_State extends State<FilterView> {
               child: RaisedButton(
                   color: Color(0xffBA680B),
                   hoverColor: Color(0xffF5CA99),
-                  onPressed: () {},
+                  onPressed: () {
+                     Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => (SearchboxCultural()),
+                      ));
+
+                  },
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40.0),
                     side: BorderSide(color: Color(0xffBA680B)),
@@ -184,7 +198,14 @@ class FilterView_State extends State<FilterView> {
               child: RaisedButton(
                   color: Color(0xffBA680B),
                   hoverColor: Color(0xffF5CA99),
-                  onPressed: () {},
+                  onPressed: () {
+                     Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => (SearchboxAdventure()),
+                      ));
+
+                  },
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40.0),
                     side: BorderSide(color: Color(0xffBA680B)),
@@ -213,7 +234,14 @@ class FilterView_State extends State<FilterView> {
               child: RaisedButton(
                   color: Color(0xffBA680B),
                   hoverColor: Color(0xffF5CA99),
-                  onPressed: () {},
+                  onPressed: () {
+                     Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => (SearchboxForest()),
+                      ));
+
+                  },
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40.0),
                     side: BorderSide(color: Color(0xffBA680B)),
@@ -242,7 +270,14 @@ class FilterView_State extends State<FilterView> {
               child: RaisedButton(
                   color: Color(0xffBA680B),
                   hoverColor: Color(0xffF5CA99),
-                  onPressed: () {},
+                  onPressed: () {
+                     Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => (SearchboxBusiness()),
+                      ));
+
+                  },
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40.0),
                     side: BorderSide(color: Color(0xffBA680B)),
@@ -269,7 +304,14 @@ class FilterView_State extends State<FilterView> {
               child: RaisedButton(
                   color: Color(0xffBA680B),
                   hoverColor: Color(0xffF5CA99),
-                  onPressed: () {},
+                  onPressed: () {
+                     Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => (SearchboxNature()),
+                      ));
+
+                  },
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40.0),
                     side: BorderSide(color: Color(0xffBA680B)),

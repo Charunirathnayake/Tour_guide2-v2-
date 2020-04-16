@@ -79,12 +79,12 @@ class Register_state extends State<Register> {
                   color: Color(0xffBA680B),
                   fontWeight: FontWeight.bold,
                   fontSize: 25.0)),
-          SizedBox(
+         /* SizedBox(
             height: 30.0,
-          ),
+          ),*/
 
           //Google signup
-          Padding(
+        /*  Padding(
             padding: EdgeInsets.only(left: 20.0, right: 20.0),
             child: OutlineButton(
               onPressed: () {},
@@ -148,7 +148,7 @@ class Register_state extends State<Register> {
             indent: 10.0,
             thickness: 2.0,
             color: Color(0xffBA680B),
-          ),
+          ),*/
           SizedBox(height: 20.0),
 
 //firstname textfield

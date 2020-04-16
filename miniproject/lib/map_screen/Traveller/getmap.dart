@@ -76,7 +76,8 @@ class GetMapState extends State<GetMap> {
     return Scaffold(
       key: homeScaffoldKey,
       appBar: AppBar(
-        title: Text('Drivers Map'),
+        backgroundColor: Color(0xffBA680B),
+        title: Text('Guides Map'),
       ),
       body: _initialPosition == null
           ? Container(
@@ -209,10 +210,10 @@ class GetMapState extends State<GetMap> {
                     },
                     tooltip: "Available Guides",
                     child: Icon(
-                      Icons.directions_car,
+                      Icons.location_on,
                       color: Colors.white,
                     ),
-                    backgroundColor: Colors.green,
+                    backgroundColor: Color(0xffBA680B),
                   ),
                 ),
                 Positioned(
@@ -232,7 +233,7 @@ class GetMapState extends State<GetMap> {
                       Icons.call,
                       color: Colors.white,
                     ),
-                    backgroundColor: Colors.green,
+                    backgroundColor: Color(0xffBA680B),
                   ),
                 ),
                 Positioned(

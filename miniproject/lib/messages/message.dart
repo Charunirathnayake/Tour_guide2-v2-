@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'msgUI.dart';
 
@@ -13,7 +12,7 @@ class Messanging extends StatefulWidget{
 }
  class Messanging_State extends State<Messanging>{
 
-   final FirebaseMessaging _firebaseMessaging=FirebaseMessaging();
+  /* final FirebaseMessaging _firebaseMessaging=FirebaseMessaging();
 @override
    final List<Message>messages=[];
 void initState(){
@@ -35,13 +34,17 @@ onLaunch: (Map <String,dynamic>message) async {
     }
 
   );
-}
+}*/
 
   @override
   Widget build(BuildContext context) {
     
-    return/* Container(height:23.0,
-    color:Colors.black)*/
+    return Container(
+      width: 200,
+      height: 200,
+      color: Colors.black,
+    );
+    /*
     ListView(
       children:messages.map(buildMessage).toList()
     );
@@ -51,7 +54,7 @@ onLaunch: (Map <String,dynamic>message) async {
     return ListTile(
       title: Text(message.title),
       subtitle: Text(message.body),
-    );
+    );*/
     
   
   }

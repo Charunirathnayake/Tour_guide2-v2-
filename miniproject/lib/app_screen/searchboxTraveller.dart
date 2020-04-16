@@ -6,8 +6,9 @@ import 'package:loader_search_bar/loader_search_bar.dart';
 import 'package:miniproject/app_screen/interface.dart';
 import 'Posts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'auth_traveller.dart';
 
-class Searchbox extends StatelessWidget {
+class Searchboxtraveller extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,12 +25,11 @@ class Searchbox extends StatelessWidget {
               },
             ),
             IconButton(
-              icon: Icon(Icons.person_add),
+              icon: Icon(Icons.offline_pin),
               onPressed: () {
-                Navigator.pop(context);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Content()));
-              },
+               // Auth().logout();
+         
+               },
             )
           ],
         ));
@@ -37,7 +37,7 @@ class Searchbox extends StatelessWidget {
 }
 
 class Datasearchbox extends SearchDelegate<String> {
-Future getposts() async{
+  Future getposts() async{
   var firestore=Firestore.instance;
  QuerySnapshot qn= await firestore.collection("profiledata").where("city",isEqualTo: query).getDocuments();
  return qn.documents;
@@ -51,7 +51,7 @@ Future getposts() async{
     }).toString()
   ];
 
-  final recent = ['Kandy', 'Galle'];
+  final recent = ['kegalle', 'Galle'];
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -59,7 +59,7 @@ Future getposts() async{
       IconButton(
         icon: Icon(Icons.clear),
         onPressed: () {
-          //print("Hello");
+        //  print("Hello");
           query = "";
         },
       )
@@ -216,7 +216,7 @@ else{
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggesionsList = query.isEmpty
+     final suggesionsList = query.isEmpty
         ? recent
         : distric.where((p) => p.startsWith(query)).toList();
     return ListView.builder(
@@ -242,11 +242,8 @@ else{
       itemCount: suggesionsList.length,
     );
   }
+    
 }
-
-
-
-
 
 class ContentOfThePage extends StatefulWidget {
   @override
@@ -259,7 +256,7 @@ class ContentOfThePage_state extends State<ContentOfThePage> {
   QuerySnapshot profiledata;
   CrudMethods crudobj = CrudMethods();
 
-  @override
+ @override
   void initState() {
     crudobj.getData().then((result) {
       setState(() {
@@ -296,6 +293,7 @@ class ContentOfThePage_state extends State<ContentOfThePage> {
                               "${profiledata.documents[i].data['Image']}",
                             ),
                             fit: BoxFit.cover),
+                      
                       ),
                     ),
                     SizedBox(
@@ -402,5 +400,3 @@ class ContentOfThePage_state extends State<ContentOfThePage> {
     }
   }
 }
-
-

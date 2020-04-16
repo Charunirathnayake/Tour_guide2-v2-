@@ -6,6 +6,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
+
+
+
 class Upload_img extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -80,8 +83,8 @@ class Upload_img_State extends State<Upload_img> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xffBA680B),
-        title: Text("Upload Image"),
-        centerTitle: true,
+        title: Text("Add Your Posts"),
+        
       ),
       body: Center(
         child: sampleImage == null ? Text("Select an Image") : enableUpload(),
@@ -109,7 +112,7 @@ class Upload_img_State extends State<Upload_img> {
                 ),
                 TextFormField(
                   decoration:
-                      InputDecoration(labelText: 'Description About You'),
+                      InputDecoration(labelText: 'Description'),
                   validator: (value) {
                     return value.isEmpty ? 'Description is required' : null;
                   },

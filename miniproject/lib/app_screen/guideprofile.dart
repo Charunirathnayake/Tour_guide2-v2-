@@ -209,6 +209,12 @@ class Myprofile_State extends State<Myprofile> {
   String url;
   String name, address, city, passion, email;
   String phonenumber;
+  bool checkboxvalue1 = false;
+  bool checkboxvalue2 = false;
+  bool checkboxvalue3 = false;
+  bool checkboxvalue4 = false;
+  bool checkboxvalue5 = false;
+  bool checkboxvalue6 = false;
 
   getName(name) {
     this.name = name;
@@ -260,6 +266,12 @@ class Myprofile_State extends State<Myprofile> {
       "phonenumber": phonenumber,
       "email": email,
       "gendervalue": gendervalue,
+      "natureGuide": checkboxvalue1,
+      "heritageGuide": checkboxvalue2,
+      "culturalGuide": checkboxvalue3,
+      "adventureGuide": checkboxvalue4,
+      "forestGuide": checkboxvalue5,
+      "businessGuide": checkboxvalue6
     };
     ds.setData(tasks).whenComplete(() {
       print('New data added.');
@@ -306,6 +318,12 @@ class Myprofile_State extends State<Myprofile> {
       "phonenumber": phonenumber,
       "email": email,
       "gendervalue": gendervalue,
+      "natureGuide": checkboxvalue1,
+      "heritageGuide": checkboxvalue2,
+      "culturalGuide": checkboxvalue3,
+      "adventureGuide": checkboxvalue4,
+      "forestGuide": checkboxvalue5,
+      "businessGuide": checkboxvalue6,
       "Image": url,
     };
     ds.setData(tasks).whenComplete(() {
@@ -343,7 +361,7 @@ class Myprofile_State extends State<Myprofile> {
           ),
 
           //profile pic
-         Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Align(
@@ -555,6 +573,116 @@ class Myprofile_State extends State<Myprofile> {
           ],
         ),
         SizedBox(height: 10.0),
+
+//About guide type
+
+        Column(
+          children: <Widget>[
+            Text(
+              'Choose Your Guide Type',
+              style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
+            ),
+             SizedBox(height: 10.0),
+
+
+            
+            Padding(
+              padding: const EdgeInsets.only(left:20.0),
+              child: Column(
+                children: <Widget>[
+                  
+                  Row(
+                   
+                    children: <Widget>[
+                      Text("Nature Guide"),
+                     SizedBox(width: 34.0,),
+                      Checkbox(
+                          value: checkboxvalue1,
+                          onChanged: (bool value) {
+                            setState(() {
+                              checkboxvalue1 = value;
+                            });
+                          }),
+                    ],
+                  ),
+                  Row(
+                    
+                    children: <Widget>[
+                      Text("Heritage Guide"),
+                      SizedBox(width: 25.0,),
+                      Checkbox(
+                          value: checkboxvalue2,
+                          onChanged: (bool value) {
+                            setState(() {
+                              checkboxvalue2 = value;
+                            });
+                          }),
+                    ],
+                  ),
+                  Row(
+                    
+                    children: <Widget>[
+                      Text("Cultural Guide"),
+                      SizedBox(width: 30.0,),
+                      Checkbox(
+                          value: checkboxvalue3,
+                          onChanged: (bool value) {
+                            setState(() {
+                              checkboxvalue3 = value;
+                            });
+                          }),
+                    ],
+                  ),
+                  Row(
+                    
+                    children: <Widget>[
+                      Text("Adventure Guide"),
+                      SizedBox(width: 15.0,),
+                      Checkbox(
+                          value: checkboxvalue4,
+                          onChanged: (bool value) {
+                            setState(() {
+                              checkboxvalue4 = value;
+                            });
+                          }),
+                    ],
+                  ),
+                  Row(
+                  
+                    children: <Widget>[
+                      Text("Forest Guide"),
+                      SizedBox(width: 40.0,),
+                      Checkbox(
+                          value: checkboxvalue5,
+                          onChanged: (bool value) {
+                            setState(() {
+                              checkboxvalue5 = value;
+                            });
+                          }),
+                    ],
+                  ),
+                  Row(
+                  
+                    children: <Widget>[
+                      Text("Business Guide"),
+                      SizedBox(width: 25.0,),
+                      Checkbox(
+                          value: checkboxvalue6,
+                          onChanged: (bool value) {
+                            setState(() {
+                              checkboxvalue6 = value;
+                            });
+                          }),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+         SizedBox(height: 10.0),
+
+
 
         //phone number
         Column(

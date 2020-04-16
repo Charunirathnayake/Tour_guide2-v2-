@@ -4,8 +4,10 @@ import 'package:miniproject/app_screen/filters.dart';
 import 'package:miniproject/app_screen/messages.dart';
 import 'package:miniproject/app_screen/search.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:miniproject/app_screen/searchboxTraveller.dart';
 import 'package:miniproject/map_screen/Traveller/getmap.dart';
 import 'package:miniproject/map_screen/map_traveller.dart';
+import 'package:miniproject/post_upload/post_home.dart';
 
 
 class BottomNavBar_traveller extends StatefulWidget {
@@ -19,16 +21,17 @@ class _BottomNavBarState_traveller extends State<BottomNavBar_traveller> {
 
   int pageindex = 0;
 
-  final Searchbox _searchbox= Searchbox();
+  final Searchboxtraveller _searchboxtraveller= Searchboxtraveller();
   final Messages _messages=Messages();
   final FilterList _filterList=FilterList();
+  final PostHome _posts=PostHome();
   final GetMap _map= GetMap();
 
   Widget _showpage=Searchbox();
   Widget _pagechooser(int page){
     switch(page){
       case 0:
-      return _searchbox;
+      return _searchboxtraveller;
       break;
 
       case 1:
@@ -38,8 +41,10 @@ class _BottomNavBarState_traveller extends State<BottomNavBar_traveller> {
       case 2:
       return _filterList;
       break;
-
       case 3:
+      return _posts;
+
+      case 4:
       return _map;
       break;
 
@@ -61,6 +66,7 @@ class _BottomNavBarState_traveller extends State<BottomNavBar_traveller> {
             Icon(FontAwesomeIcons.bookOpen, size: 30),
             Icon(Icons.email, size: 30),
             Icon(Icons.filter_list, size: 30),
+            Icon(Icons.stars,size:30),
             Icon(Icons.location_on, size: 30),
            // Icon(Icons.perm_identity, size: 30),
           ],

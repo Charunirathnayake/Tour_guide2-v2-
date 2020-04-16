@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miniproject/app_screen/Filters/Nature.dart';
 import 'package:miniproject/app_screen/Login.dart';
 import 'package:miniproject/app_screen/birthday.dart';
 import 'package:miniproject/app_screen/changepassword.dart';
@@ -26,7 +27,6 @@ import 'package:miniproject/messages/message.dart';
 import 'package:miniproject/post_upload/img_upload.dart';
 import 'package:miniproject/post_upload/post_home.dart';
 import 'package:miniproject/app_screen/spalshpage.dart';
-
 import 'map_screen/Traveller/getmap.dart';
 
 
@@ -37,7 +37,7 @@ void main(){
       theme: ThemeData(
         primarySwatch: Colors.brown
       ),
-      home:Messanging(),
+      home:Searchbox(),
       debugShowCheckedModeBanner: false,
     )
   );

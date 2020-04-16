@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:loader_search_bar/loader_search_bar.dart';
+import 'package:miniproject/app_screen/Filters/Natureposts.dart';
 import 'package:miniproject/app_screen/interface.dart';
-import 'Posts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class Searchbox extends StatelessWidget {
+class SearchboxNature extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +37,7 @@ class Searchbox extends StatelessWidget {
 }
 
 class Datasearchbox extends SearchDelegate<String> {
-Future getposts() async{
+  Future getposts() async{
   var firestore=Firestore.instance;
  QuerySnapshot qn= await firestore.collection("profiledata").where("city",isEqualTo: query).getDocuments();
  return qn.documents;
@@ -51,7 +51,7 @@ Future getposts() async{
     }).toString()
   ];
 
-  final recent = ['Kandy', 'Galle'];
+  final recent = ['kegalle', 'Galle'];
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -59,7 +59,7 @@ Future getposts() async{
       IconButton(
         icon: Icon(Icons.clear),
         onPressed: () {
-          //print("Hello");
+         // print("Hello");
           query = "";
         },
       )
@@ -212,11 +212,12 @@ else{
 }
 
     });
+
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggesionsList = query.isEmpty
+   final suggesionsList = query.isEmpty
         ? recent
         : distric.where((p) => p.startsWith(query)).toList();
     return ListView.builder(
@@ -244,10 +245,6 @@ else{
   }
 }
 
-
-
-
-
 class ContentOfThePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -257,9 +254,9 @@ class ContentOfThePage extends StatefulWidget {
 
 class ContentOfThePage_state extends State<ContentOfThePage> {
   QuerySnapshot profiledata;
-  CrudMethods crudobj = CrudMethods();
+  CrudMethodsnature crudobj = CrudMethodsnature();
 
-  @override
+ @override
   void initState() {
     crudobj.getData().then((result) {
       setState(() {
@@ -296,6 +293,7 @@ class ContentOfThePage_state extends State<ContentOfThePage> {
                               "${profiledata.documents[i].data['Image']}",
                             ),
                             fit: BoxFit.cover),
+                      
                       ),
                     ),
                     SizedBox(
@@ -402,5 +400,3 @@ class ContentOfThePage_state extends State<ContentOfThePage> {
     }
   }
 }
-
-
