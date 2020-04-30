@@ -5,6 +5,7 @@ import 'package:miniproject/app_screen/auth_guide.dart';
 import 'package:miniproject/app_screen/cur_nav_bar.dart';
 import 'package:miniproject/app_screen/googlesignin_guide.dart';
 import 'package:miniproject/app_screen/search.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'signup.dart';
 import 'recover.dart';
 import 'googlesingin.dart';
@@ -56,6 +57,14 @@ class Loginpage extends StatefulWidget {
 
 class Loginpage_state extends State<Loginpage> {
   final FirebaseAuth _authguide = FirebaseAuth.instance;
+
+
+//new additions
+FirebaseUser currentUser;
+SharedPreferences prefs;
+
+
+
 //facebook signin
   Future<FirebaseUser> _signinwithfacebookguide() async {
     var facebookLogin = FacebookLogin();
@@ -97,6 +106,8 @@ class Loginpage_state extends State<Loginpage> {
       _isHiddenCPw = !_isHiddenCPw;
     });
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -225,6 +236,9 @@ class Loginpage_state extends State<Loginpage> {
                 color: Color(0xffBA680B),
                 hoverColor: Color(0xffF5CA99),
                 onPressed: () async {
+                  //new addtitions
+                   prefs = await SharedPreferences.getInstance();
+                   
                   if (emailcontroler.text.isEmpty ||
                       passcontroller.text.isEmpty) {
                     setState(() {
@@ -235,13 +249,13 @@ class Loginpage_state extends State<Loginpage> {
                   } else {
                     bool res = await Auth().signInWithEmail(
                         emailcontroler.text, passcontroller.text);
+
                     if (res == true) {
                       Navigator.pop(context);
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => BottomNavBar(),
-                          ));
+                            builder: (context) => BottomNavBar( )));
                     } else {
                       Navigator.push(
                           context,

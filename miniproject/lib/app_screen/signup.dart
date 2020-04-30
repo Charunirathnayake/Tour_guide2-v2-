@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:miniproject/app_screen/Login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -279,11 +280,15 @@ class Register_state extends State<Register> {
                     await FirebaseAuth.instance.createUserWithEmailAndPassword(
                         email: MailController.text,
                         password: PassController.text);
-
+FirebaseUser user=await FirebaseAuth.instance.currentUser();
+String uid=user.uid.toString();
                     userObj.addData({
+                      'id':uid,
                       'firstname': this.FirstController.text,
                       'lastname': this.LastController.text,
                       'email': this.MailController.text,
+                      
+                      
                     });
                     Navigator.pop(context);
                       Navigator.push(context, MaterialPageRoute(builder: (context) => LoginInterface()));
@@ -327,7 +332,7 @@ class Register_state extends State<Register> {
                       fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
-                  //TODO:DEFINE ONTAP
+                  
                   Navigator.push(
                       context,
                       MaterialPageRoute(

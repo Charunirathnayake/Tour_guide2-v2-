@@ -81,7 +81,8 @@ class Datasearchbox extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    return FutureBuilder(
+    return
+     FutureBuilder(
       future: getposts(),
       builder:(context, snapshot){
 if(snapshot.connectionState==ConnectionState.waiting){
@@ -211,7 +212,11 @@ else{
   });
 }
 
-    });
+    })
+   /* Container(
+      child: Text("gffgh"),
+    )*/
+    ;
 
   }
 

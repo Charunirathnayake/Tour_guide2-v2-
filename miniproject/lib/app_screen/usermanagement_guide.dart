@@ -14,7 +14,8 @@ class UserManagement{
     if(isLoggedIn()){
       Firestore.instance.collection('Guide').add(GuideData).catchError((e){
         print(e);
-      });
+      })
+      ;
     }else{
       print('You Need to log in');
     }

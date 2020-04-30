@@ -1,9 +1,12 @@
+
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:loader_search_bar/loader_search_bar.dart';
 import 'package:miniproject/app_screen/interface.dart';
+import 'package:miniproject/messages/TravellermsgUI.dart';
 import 'Posts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -211,7 +214,11 @@ else{
   });
 }
 
-    });
+    })
+    /*
+    Container(
+      child:Text("bvcxcvb")
+    )*/;
   }
 
   @override
@@ -377,7 +384,10 @@ class ContentOfThePage_state extends State<ContentOfThePage> {
                               color: Color(0xffBA680B),
                               hoverColor: Color(0xffF5CA99),
                               onPressed: () {
-                                print("Hello");
+                                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => TravellermsgUi(peerId:profiledata.documents[i].data['email'])));
+             
                               },
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(40.0),
@@ -404,3 +414,22 @@ class ContentOfThePage_state extends State<ContentOfThePage> {
 }
 
 
+class Detailpage extends StatefulWidget{
+  final DocumentSnapshot post;
+  Detailpage({this.post});
+  @override
+  State<StatefulWidget> createState() {
+    
+    return Detailpage_State();
+  }
+
+}
+
+class Detailpage_State extends State<Detailpage>{
+  @override
+  Widget build(BuildContext context) {
+    
+    return null;
+  }
+
+}

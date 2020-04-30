@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
-/*class User{
+/*
+class User{
   User({@required this.uid});
   final String uid;
 }
@@ -73,14 +73,18 @@ class auth implements authbase{
 
 
 }*/
-class Auth{
-final _firebaseAuth=FirebaseAuth.instance;
+
+
+
+  class Auth{
+  final _firebaseAuth=FirebaseAuth.instance;
   Future<bool> signInWithEmail(String email, String password) async {
     try {
       AuthResult result = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
       if (user != null) {
+        
         return true;
       } else {
         return false;
@@ -89,7 +93,6 @@ final _firebaseAuth=FirebaseAuth.instance;
       return false;
     }
   }
-
 Future<void> logout () async{
 try{
 await _firebaseAuth.signOut();
@@ -98,11 +101,4 @@ catch(e){
 print("Error Logging Out");
 }
 }
-
-}
-
-
-
-
-
-  
+  }

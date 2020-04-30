@@ -120,10 +120,13 @@ class New_password_State extends State<New_password> {
                             _isLoading = true;
                           });
                           FirebaseAuth.instance
-                              .sendPasswordResetEmail(email: _email.text)
-                              .then((onValue) {
+                              .sendPasswordResetEmail(email: _email.text).catchError((e){
+                                print("sdfghj");
+                              }).then((onValue) {
                             _isLoading = false;
                             dialogResetTrigger(context);
+                          }).catchError((e){
+                            print("cfvgbhnjkm");
                           });
                         }
                       else{print("heloooo");}}

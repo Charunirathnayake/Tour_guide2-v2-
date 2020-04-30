@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:miniproject/app_screen/Login_traveller.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'usermanagement_traveller.dart';
 
 //create appbar
@@ -275,16 +276,35 @@ class Register_traveller_state extends State<Register_traveller> {
                 color: Color(0xffBA680B),
                 hoverColor: Color(0xffF5CA99),
                 onPressed: () async {
+ SharedPreferences prefs;
+    String currentUserId;
+
+prefs = await SharedPreferences.getInstance();
+     currentUserId = prefs.getString('id')?? '';
+     print('Id:$currentUserId');
+   
+
+
+
+   
+
                   if (formkey.currentState.validate()) {
                     await FirebaseAuth.instance.createUserWithEmailAndPassword(
                         email: MailController.text,
                         password: PassController.text);
+                        FirebaseUser user=await FirebaseAuth.instance.currentUser();
+                String uid=user.uid.toString();
+
 
                     userObj.addData({
+                      'id':uid,
                       'firstname': this.FirstController.text,
                       'lastname': this.LastController.text,
                       'email': this.MailController.text,
-                    });
+                      'chattingWith':null,
+                      
+                    }).then((data) async {
+            await prefs.setString('id',uid);});
                     Navigator.pop(context);
                       Navigator.push(context, MaterialPageRoute(builder: (context) => LoginInterface_traveller()));
                   }

@@ -4,6 +4,7 @@ import 'package:miniproject/app_screen/auth_guide.dart';
 import 'package:miniproject/app_screen/googlesignin_guide.dart';
 import 'package:miniproject/app_screen/googlesingin.dart';
 import 'package:miniproject/app_screen/passion.dart';
+import 'auth_guide.dart';
 import 'gender.dart';
 import 'birthday.dart';
 import 'passion.dart';
@@ -256,9 +257,14 @@ class Myprofile_State extends State<Myprofile> {
   }
 
   createData() {
+    
     DocumentReference ds =
         Firestore.instance.collection('profiledata').document(email);
+        //String uid=ds.documentID.toString();
+
+        
     Map<String, dynamic> tasks = {
+      
       "name": name,
       "address": address,
       "city": city,
@@ -310,7 +316,10 @@ class Myprofile_State extends State<Myprofile> {
   void saveToDatabase(url) {
     DocumentReference ds =
         Firestore.instance.collection('profiledata').document(email);
+        //String uid=ds.documentID.toString();
+
     Map<String, dynamic> tasks = {
+  
       "name": name,
       "address": address,
       "city": city,

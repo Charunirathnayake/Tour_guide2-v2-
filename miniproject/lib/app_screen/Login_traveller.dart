@@ -282,7 +282,7 @@ return authresult.user;
                       ),
                 ),
                 onTap: () {
-                  //TODO:DEFINE ONTAP
+                  
                   Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) =>(Recover()),
